@@ -843,4 +843,18 @@ class Auth0
         $input = strtr($input, '-_', '+/');
         return base64_decode($input);
     }
+
+    /**
+     * Builds and returns a logout URL to terminate an SSO session.
+     *
+     * @param null|string         $returnTo  URL to return to after logging in; must be white-listed in Auth0.
+     * @param boolean             $federated Attempt a federated logout.
+     *
+     * @return string
+     *
+     */
+    public function get_logout_link(?string $returnTo = null, bool $federated = false) : string
+    {
+        return $this->authentication->get_logout_link($returnTo, true, $federated);
+    }
 }
